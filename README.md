@@ -20,3 +20,7 @@ The specification says about it but implementation violates it.
 
 ### Corner cases.
 The specification says about it but it is the corner cases.
+
+### Ambiguous specification.
+There are some interpretations of a specification sentence.
+
