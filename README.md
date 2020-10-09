@@ -17,3 +17,6 @@ The specification says about it but implementation extends it originally.
 
 ### Implementation vaiolates it.
 The specification says about it but implementation violates it.
+
+### Corner cases.
+The specification says about it but it is the corner cases.
