@@ -31,3 +31,8 @@ It works in many implementations but not guaranteed especially in clisp.
       :for c = (code-char i) ; <--- invalid.
       :do ...)
 ```
+
+# Implicitly undefined. (?)
+I could not find an article about for-as-across subclause uses `AREF`.
+
+This means when vector has fill-pointer, `LOOP` may iterate inactive region.
