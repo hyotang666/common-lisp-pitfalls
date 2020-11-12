@@ -36,3 +36,19 @@ It works in many implementations but not guaranteed especially in clisp.
 I could not find an article about for-as-across subclause uses `AREF`.
 
 This means when vector has fill-pointer, `LOOP` may iterate inactive region.
+
+# Difficult to understand.
+## INITIALLY clauses can not refer for-as-equals-then subclause.
+`:INITIALLY` clauses are evaluated in the loop prologue.
+
+[CLHS says](http://www.lispworks.com/documentation/HyperSpec/Body/06_agb.htm)
+
+> The initially construct causes the supplied compound-forms to be evaluated in the loop prologue, which precedes all loop code except for initial settings supplied by constructs with, for, or as.
+
+`for-as-equals-then` subclauses are initialized on the first iteration.
+
+[CLHS says](http://www.lispworks.com/documentation/HyperSpec/Body/06_abad.htm)
+
+> In the for-as-equals-then subclause the for or as construct initializes the variable var by setting it to the result of evaluating form1 on the first iteration
+
+Consequently, in the `:INITIALLY` clause forms, for-as-equals-then subclauses are not referred to since such variables are set on the iteration body (more correctly, you can refer to it but its value is NIL).
