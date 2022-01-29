@@ -18,3 +18,12 @@ you can use `named-readtables::%get-macro-character`.
 
 Becare `%get-macro-character`'s second argument is required. (in case of `cl:get-macro-character` is optional.)
 Additionaly, `%get-macro-character` does not return secondary value.
+
+Similar above, `named-readtables::%get-dispatch-macro-character` for `cl:get-dispatch-macro-character`.
+
+```lisp
+#+cmucl
+(get-dispatch-macro-character #\# #\@) => FUNCTION
+
+(named-readtables::%get-dispatch-macro-character #\# #\@ *readtable*) => NIL
+```
