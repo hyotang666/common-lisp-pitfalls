@@ -15,3 +15,42 @@ You should write like below.
      (consp (cdr x))
      (null (cddr x)))
 ```
+
+# Allegro violates specification.
+To test non-NIL atom, you should use `NULL` rather than `LIST`.
+Interpreted code works fine, but compiled code.
+
+```lisp
+#+allegro
+;; Case using LIST.
+
+CL-USER(0): (lambda (x) (typep x '(and atom (not LIST)))) ; <---
+#<Interpreted Function (unnamed) @ #x2255447a>
+
+CHECK-BNF(1): (funcall * nil)
+NIL ; <--- FINE!
+
+CL-USER(2): (compile nil **)
+#<Function (:ANONYMOUS-LAMBDA 69) @ #x22557032>
+NIL
+NIL
+
+CL-USER(3): (funcall * nil)
+T ; <--- WTF!?
+
+;; Case using NULL.
+
+CL-USER(0): (lambda (x) (typep x '(and atom (not NULL)))) ; <---
+#<Interpreted Function (unnamed) @ #x2255447a>
+
+CHECK-BNF(1): (funcall * nil)
+NIL ; <--- FINE!
+
+CL-USER(2): (compile nil **)
+#<Function (:ANONYMOUS-LAMBDA 69) @ #x22557032>
+NIL
+NIL
+
+CL-USER(3): (funcall * nil)
+NIL ; <--- FINE!
+```

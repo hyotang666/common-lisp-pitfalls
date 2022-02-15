@@ -1,0 +1,36 @@
+diff --git a/README.md b/README.md
+index 1710e1b..f8d5677 100644
+--- a/README.md
++++ b/README.md
+@@ -84,7 +84,7 @@ SBCL
+ * CLISP/2.49
+ * CMUCL/21D
+ * ECL/21.2.1
+-* Allegro/10.1 ; Failed.
++* Allegro/10.1
+ * ABCL/1.8.0
+ 
+ ### Known issue.
+@@ -107,22 +107,6 @@ due to [the abcl pretty printing issue](https://github.com/armedbear/abcl/issues
+ 
+ Currently tests about pretty printings are ignored.
+ 
+-#### allegro
+Currently CHECK-BNF stop to support allegro due to allegro specific issue.
+Here are the session.
+
+```lisp
+CL-USER(0): (lambda (x) (typep x '(and atom (not list))))
+#<Interpreted Function (unnamed) @ #x2255447a>
+CHECK-BNF(1): (funcall * nil)
+NIL ; <--- FINE!
+CL-USER(2): (compile nil **)
+#<Function (:ANONYMOUS-LAMBDA 69) @ #x22557032>
+NIL
+NIL
+CL-USER(3): (funcall * nil)
+T ; <--- WTF!?
+```
+ ## Installation
+ 
+ quicklisp supported.
